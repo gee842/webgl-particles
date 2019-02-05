@@ -1,0 +1,96 @@
+<body>
+<canvas id="glCanvas" width="900" height="700">
+  Browser Unsupported
+</canvas>
+</body>
+<script src="gl-matrix.js"></script>
+<script src="app.js"></script>
+<script>
+
+
+function applyupdate()
+{
+  document.getElementById("fps").value = fps;
+  totalFrames = 0;
+  startTime = performance.now();
+  DRAW_MODE = document.getElementById("drawmode").value;
+
+  //SHAPE_VERTEX = document.getElementById("drawnum").value;
+  EMIT_RATE = document.getElementById("particlenum").value;
+  AUTO_ROTATE = document.getElementById("rotatematrix").value.split(',').map(Number);
+  EMIT_COLOR = document.getElementById("emitcolor").value.split(',').map(Number);
+  PARTICLE_LIFE = document.getElementById("particlelife").value;
+  GRAVITY_STRENGTH = parseFloat(document.getElementById("grav").value);
+  VELOCITY_VARIANCE = document.getElementById("velvar").value;
+  switch(DRAW_MODE) {
+    case "gl.LINES":
+        SHAPE_VERTEX = 2
+        break;
+    case "gl.TRIANGLES":
+        SHAPE_VERTEX = 3
+        break;
+    case "gl.POINTS":
+        SHAPE_VERTEX = 1
+        break;
+    case "gl.LINE_STRIP":
+        SHAPE_VERTEX = 2
+        break;
+    case "gl.QUADs":
+        SHAPE_VERTEX = 4
+        break;
+  }
+
+}
+InitDemo();
+
+
+</script>
+<body>
+  <br>
+    Number of Emitters
+    <input type="number" name="emitters" value=20 id ="particlenum">
+    <br>
+    Draw Mode
+
+
+  <select id="drawmode">
+    <option value="gl.TRIANGLES">Triangle</option>
+    <option value="gl.LINES">Lines</option>
+    <option value="gl.LINE_STRIP">Lines Connect</option>
+    <option value="gl.POINTS">Points</option>
+
+  </select>
+
+  <br>
+  time to live
+  <input type="number" name="ttl" value=200 id ="particlelife">
+130 default
+<br>
+
+  Gravity Strength
+  <input type="text" name="gravity" value="0.0009" id ="grav">
+0.00190 default
+<br>
+  Emitter Velocity Variance
+  <input type="number" name="variance" value=0.02 id ="velvar">
+0.015 default
+    <br>
+    Rotation Matrix
+    <input type="text" name="rotation" value="0.3,0.7,-0.8" id ="rotatematrix">
+    <br>
+    Emit Color
+    <input type="text" name="colormatrix" value="0.01,0.4,0.0" id ="emitcolor">
+    <button onclick="applyupdate()">Apply Particles</button>
+  <br>
+  <button onclick="addqueue = (randomInitParticles(100,1.5,-1.5))">Init Particles</button>
+  <button onclick="addqueue = (InitSquare(100,1.5,-1.5));">Init Square</button>
+  <button onclick="randomVelocities(particleList,0.04,-0.04);">Random Velocity</button>
+
+  <button onclick="reverseVelocities(particleList);">Reverse Velocity</button>
+  <p> fps  vertex count</p>
+<input type="text" name="fps" value="0" id ="fps">
+<input type="text" name="vcount" value="0" id ="vcount">
+
+
+
+</body>
