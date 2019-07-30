@@ -5,4 +5,4 @@ Interactive Particle System written in Web-GL, using vanilla Javascript
 
 Watch the pretty colors
 
-Modify Settings, and hit Apply Graphics to Push the changes.
+Modify Settings, and hit Apply Particles to Push the changes.
